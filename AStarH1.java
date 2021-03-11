@@ -1,5 +1,9 @@
+import java.util.*;
+
 public class AStarH1 extends Search
 {
+  Queue<Square> notVisited =  new PriorityQueue<>(new SquareComparator());
+  //HashMap<Square> visited = new HashMap<>
 
   public void search(Square start)
   {
@@ -7,13 +11,69 @@ public class AStarH1 extends Search
 
     boolean solved = false;
 
-    Square sq = start;
+    Square sq;
 
-    Square hMinCost = sq;
+    notVisited.add(start);
+
+    while(!solved)
+    {
+      sq = notVisited.poll();
+
+      if(sq.compareSquares(target))
+      {
+        solved = true;
+        break;
+      }
+
+      visited.put(sq.toString(), "");
+
+      exploreChildren(sq);
+
+
+    }
+
+    /*public void exploreChildren(Square sq)
+    {
+      int zeroIndex = sq.getIndex(0);
+
+      if(zeroIndex-3 >= 0)
+      {
+        Square shiftUp = sq.shift(-3);
+        System.out.println("U" + shiftUp.getOutOfPlace(target));
+        if(shiftUp.getOutOfPlace(target) < hMinCost.getOutOfPlace(target))
+          hMinCost = shiftUp;
+      }
+    }*/
 
 
 
-    for(int i = 0; i<50; i++)
+    /*
+
+         make an openlist containing only the starting node
+       make an empty closed list
+       while (the destination node has not been reached):
+           consider the node with the lowest f score in the open list
+           if (this node is our destination node) :
+               we are finished
+           if not:
+               put the current node in the closed list and look at all of its neighbors
+               for (each neighbor of the current node):
+                   if (neighbor has lower g value than current and is in the closed list) :
+                       replace the neighbor with the new, lower, g value
+                       current node is now the neighbor's parent
+                   else if (current g value is lower and this neighbor is in the open list ) :
+                       replace the neighbor with the new, lower, g value
+                       change the neighbor's parent to our current node
+
+                   else if this neighbor is not in both lists:
+                       add it to the open list and set its g
+
+          */
+
+
+
+
+    /*for(int i = 0; i<50; i++)
     {
       int zeroIndex = sq.getIndex(0);
 
@@ -57,42 +117,9 @@ public class AStarH1 extends Search
 
       if(sq.compareSquares(target))
         solved = true;
-    }
+    }*/
     //printOutput(sq);
   }
-
-
-/*
-
-     make an openlist containing only the starting node
-   make an empty closed list
-   while (the destination node has not been reached):
-       consider the node with the lowest f score in the open list
-       if (this node is our destination node) :
-           we are finished
-       if not:
-           put the current node in the closed list and look at all of its neighbors
-           for (each neighbor of the current node):
-               if (neighbor has lower g value than current and is in the closed list) :
-                   replace the neighbor with the new, lower, g value
-                   current node is now the neighbor's parent
-               else if (current g value is lower and this neighbor is in the open list ) :
-                   replace the neighbor with the new, lower, g value
-                   change the neighbor's parent to our current node
-
-               else if this neighbor is not in both lists:
-                   add it to the open list and set its g
-
-      */
-
-
-
-
-
-
-
-
-
 
 
 

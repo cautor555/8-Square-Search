@@ -8,11 +8,14 @@ public class Square
   Square parent;
   Square[] children = new Square[4];
 
+  int pathCost;
+  int heuristic;
+
   public Square()
   {
-    int randomNum1, randomNum2, temp;
-
+    int randomNum1, randomNum2, swap;
     eightSquare = new int[9];
+
     for(int i = 0; i<eightSquare.length; i++)
       eightSquare[i] = i;
 
@@ -21,9 +24,9 @@ public class Square
       randomNum1 = ThreadLocalRandom.current().nextInt(0, 9);
       randomNum2 = ThreadLocalRandom.current().nextInt(0, 9);
 
-      temp = eightSquare[randomNum1];
+      swap = eightSquare[randomNum1];
       eightSquare[randomNum1] = eightSquare[randomNum2];
-      eightSquare[randomNum2] = temp;
+      eightSquare[randomNum2] = swap;
     }
   }
 
@@ -37,22 +40,28 @@ public class Square
       eightSquare[i] = Integer.parseInt(st1.nextToken());
   }
 
-
-
   public Square(int[] squareArray)
   {
     eightSquare = new int[9];
+
     for(int i = 0; i<squareArray.length; i++)
       eightSquare[i] = squareArray[i];
-
   }
-
-
 
 
   public int getSquare(int position)
   {
     return eightSquare[position];
+  }
+
+  public int getIndex(int target)
+  {
+    for(int index = 0; index<9; index++)
+    {
+      if(getSquare(index) == target)
+        return index;
+    }
+    return -1;
   }
 
   public boolean compareSquares(Square square2)
@@ -80,24 +89,14 @@ public class Square
     return pCount%2;
   }
 
-  public int getIndex(int target)
-  {
-    for(int index = 0; index<9; index++)
-    {
-      if(getSquare(index) == target)
-        return index;
-    }
-    return -1;
-  }
-
   public Square shift(int position)
   {
     int[] eightSquareShift = eightSquare.clone();
     int zeroIndex = getIndex(0);
 
-    int temp = eightSquareShift[zeroIndex+position];
+    int swap = eightSquareShift[zeroIndex+position];
     eightSquareShift[zeroIndex+position] = 0;
-    eightSquareShift[zeroIndex] = temp;
+    eightSquareShift[zeroIndex] = swap;
     return new Square(eightSquareShift);
   }
 
@@ -107,17 +106,6 @@ public class Square
     for(int index = 0; index<9; index++)
       S += getSquare(index);
     return S;
-  }
-
-  public int getOutOfPlace(Square square2)
-  {
-    int count = 0;
-    for(int i = 0; i<eightSquare.length; i++)
-    {
-      if(eightSquare[i] != square2.getSquare(i))
-        count++;
-    }
-    return count;
   }
 
   public void setParent(Square parent)
@@ -142,4 +130,44 @@ public class Square
     }
   }
 
+  public Square getChild(int index)
+  {
+    return children[index];
+  }
+
+  public void setHeuristic(Square square2)
+  {
+    int count = 0;
+    for(int i = 0; i<eightSquare.length; i++)
+    {
+      if(eightSquare[i] != square2.getSquare(i))
+        count++;
+    }
+    heuristic = count;
+  }
+
+  public int getHeuristic()
+  {
+    return heuristic;
+  }
+
+  public void setPathCost(int cost)
+  {
+    pathCost = cost;
+  }
+
+  public int getPathCost()
+  {
+    return pathCost;
+  }
+
 }
+
+
+class SquareComparator implements Comparator<Square> {
+
+       @Override
+       public int compare(Square sq1, Square sq2) {
+           return (sq1.getHeuristic() + sq1.getPathCost()) < (sq2.getHeuristic() + sq2.getPathCost()) ? 1 : -1;
+       }
+   }

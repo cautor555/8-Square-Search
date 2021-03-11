@@ -7,6 +7,7 @@ public abstract class Search
   int exploredNodes;
 
   List<Square> path = new ArrayList<Square>();
+  HashMap<String, String> visited = new HashMap<String, String>();
 
 
   protected void search(Square start)

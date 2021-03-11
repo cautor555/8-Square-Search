@@ -5,8 +5,6 @@ public class BFS extends Search
   Square sq;
 
   Queue<Square> queue =  new LinkedList<>();
-  HashMap<String, String> squareStates = new HashMap<String, String>();
-  //List<Square> path = new ArrayList<Square>();
 
   public void search(Square start)
   {
@@ -26,9 +24,9 @@ public class BFS extends Search
       if(sq.compareSquares(target))
         break;
 
-      if(!squareStates.containsKey(sq.toString()))
+      if(!visited.containsKey(sq.toString()))
       {
-        squareStates.put(sq.toString(), "");
+        visited.put(sq.toString(), "");
         exploreChildren(sq);
         exploredNodes++;
       }
