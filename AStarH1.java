@@ -43,7 +43,7 @@ public class AStarH1 extends Search
       if(!(visited.containsKey(shiftUp.toString())))
       {
         shiftUp.setPathCost(sq.getPathCost() + 1);
-        shiftUp.setHeuristic(target);
+        shiftUp.setHeuristic1(target);
         shiftUp.setParent(sq);
         sq.setChild(shiftUp);
         pQueue.add(shiftUp);
@@ -57,7 +57,7 @@ public class AStarH1 extends Search
       if(!(visited.containsKey(shiftDown.toString())))
       {
         shiftDown.setPathCost(sq.getPathCost() + 1);
-        shiftDown.setHeuristic(target);
+        shiftDown.setHeuristic1(target);
         shiftDown.setParent(sq);
         sq.setChild(shiftDown);
         pQueue.add(shiftDown);
@@ -71,7 +71,7 @@ public class AStarH1 extends Search
       if(!(visited.containsKey(shiftLeft.toString())))
       {
         shiftLeft.setPathCost(sq.getPathCost() + 1);
-        shiftLeft.setHeuristic(target);
+        shiftLeft.setHeuristic1(target);
         shiftLeft.setParent(sq);
         sq.setChild(shiftLeft);
         pQueue.add(shiftLeft);
@@ -85,7 +85,7 @@ public class AStarH1 extends Search
       if(!(visited.containsKey(shiftRight.toString())))
       {
         shiftRight.setPathCost(sq.getPathCost() + 1);
-        shiftRight.setHeuristic(target);
+        shiftRight.setHeuristic1(target);
         shiftRight.setParent(sq);
         sq.setChild(shiftRight);
         pQueue.add(shiftRight);

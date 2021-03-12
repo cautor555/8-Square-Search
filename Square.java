@@ -134,13 +134,26 @@ public class Square
     return children[index];
   }
 
-  public void setHeuristic(Square square2)
+  public void setHeuristic1(Square square2)
   {
     int count = 0;
     for(int i = 0; i<eightSquare.length; i++)
     {
       if(eightSquare[i] != square2.getSquare(i))
         count++;
+    }
+    heuristic = count;
+  }
+
+  public void setHeuristic2(Square square2)
+  {
+    int count = 0;
+    int distance;
+    for(int i = 0; i<eightSquare.length; i++)
+    {
+      distance = Math.abs(square2.getIndex(i)-getIndex(i));
+      count += distance/3;
+      count += distance%3;
     }
     heuristic = count;
   }

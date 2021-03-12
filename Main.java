@@ -13,7 +13,7 @@ public class Main
     AStarH1 AStarH1Search = new AStarH1();
     AStarH1Search.search(A);
 
-    //AStarH2 AStarSearch = new AStar();
-    //AStarH1.search(A);
+    AStarH2 AStarH2Search = new AStarH2();
+    AStarH2Search.search(A);
   }
 }
