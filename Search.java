@@ -23,10 +23,12 @@ public abstract class Search
   protected void printOutput(Square sq)
   {
     path.add(sq);
+    //System.out.println(sq.toString());
     while(sq.getParent() != null)
     {
       sq = sq.getParent();
       path.add(sq);
+      //System.out.println(sq.toString());
     }
 
     System.out.println("\nInitial state:");

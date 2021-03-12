@@ -168,6 +168,6 @@ class SquareComparator implements Comparator<Square> {
 
        @Override
        public int compare(Square sq1, Square sq2) {
-           return (sq1.getHeuristic() + sq1.getPathCost()) < (sq2.getHeuristic() + sq2.getPathCost()) ? 1 : -1;
+           return (sq1.getHeuristic() + sq1.getPathCost()) > (sq2.getHeuristic() + sq2.getPathCost()) ? 1 : -1;
        }
    }
