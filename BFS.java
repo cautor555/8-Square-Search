@@ -10,16 +10,12 @@ public class BFS extends Search
   {
     super.search(start);
 
-    exploredNodes = 0;
-
     queue.add(root);
 
 
     while(queue.peek() != null)
     {
       sq = queue.poll();
-
-
 
       if(sq.compareSquares(target))
         break;
@@ -28,33 +24,10 @@ public class BFS extends Search
       {
         visited.put(sq.toString(), "");
         exploreChildren(sq);
-        exploredNodes++;
       }
     }
 
     printOutput(sq);
-
-/*
-    path.add(sq);
-    while(sq.getParent() != null)
-    {
-      sq = sq.getParent();
-      path.add(sq);
-    }
-
-    System.out.println("First 5 moves: ");
-
-    for(int i = path.size()-1; i>=path.size()-5; i--)
-    {
-      System.out.println(path.get(i).toString().substring(0,3));
-      System.out.println(path.get(i).toString().substring(3,6));
-      System.out.println(path.get(i).toString().substring(6,9) + "\n");
-    }
-
-    System.out.println("Number of explored nodes: " + exploredNodes + "\n");
-    System.out.println("Number of moves: " + path.size());
-
-*/
 
   }
 

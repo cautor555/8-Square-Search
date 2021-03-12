@@ -3,7 +3,6 @@ import java.util.*;
 public class AStarH1 extends Search
 {
   Queue<Square> pQueue =  new PriorityQueue<>(new SquareComparator());
-  HashMap<String, String> notVisited = new HashMap<String, String>();
 
   Square sq;
 
@@ -12,10 +11,6 @@ public class AStarH1 extends Search
     super.search(start);
 
     boolean solved = false;
-
-    exploredNodes = 0;
-
-
 
     pQueue.add(start);
 
@@ -34,12 +29,8 @@ public class AStarH1 extends Search
 
       exploreChildren(sq);
     }
-
     printOutput(sq);
-
   }
-
-
 
   public void exploreChildren(Square sq)
   {
@@ -49,7 +40,7 @@ public class AStarH1 extends Search
     {
       Square shiftUp = sq.shift(-3);
 
-      if(!(visited.containsKey(shiftUp.toString())) && !(notVisited.containsKey(shiftUp.toString())))
+      if(!(visited.containsKey(shiftUp.toString())))
       {
         shiftUp.setPathCost(sq.getPathCost() + 1);
         shiftUp.setHeuristic(target);
@@ -63,7 +54,7 @@ public class AStarH1 extends Search
     {
       Square shiftDown = sq.shift(3);
 
-      if(!(visited.containsKey(shiftDown.toString())) && !(notVisited.containsKey(shiftDown.toString())))
+      if(!(visited.containsKey(shiftDown.toString())))
       {
         shiftDown.setPathCost(sq.getPathCost() + 1);
         shiftDown.setHeuristic(target);
@@ -77,7 +68,7 @@ public class AStarH1 extends Search
     {
       Square shiftLeft = sq.shift(-1);
 
-      if(!(visited.containsKey(shiftLeft.toString())) && !(notVisited.containsKey(shiftLeft.toString())))
+      if(!(visited.containsKey(shiftLeft.toString())))
       {
         shiftLeft.setPathCost(sq.getPathCost() + 1);
         shiftLeft.setHeuristic(target);
@@ -91,7 +82,7 @@ public class AStarH1 extends Search
     {
       Square shiftRight = sq.shift(1);
 
-      if(!(visited.containsKey(shiftRight.toString())) && !(notVisited.containsKey(shiftRight.toString())))
+      if(!(visited.containsKey(shiftRight.toString())))
       {
         shiftRight.setPathCost(sq.getPathCost() + 1);
         shiftRight.setHeuristic(target);
@@ -100,7 +91,6 @@ public class AStarH1 extends Search
         pQueue.add(shiftRight);
       }
     }
-
   }
 
 }

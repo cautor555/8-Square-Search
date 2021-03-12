@@ -48,7 +48,6 @@ public class Square
       eightSquare[i] = squareArray[i];
   }
 
-
   public int getSquare(int position)
   {
     return eightSquare[position];

@@ -2,13 +2,10 @@ import java.util.*;
 
 public abstract class Search
 {
-  Square target;
-  Square root;
-  int exploredNodes;
+  Square target, root;
 
   List<Square> path = new ArrayList<Square>();
   HashMap<String, String> visited = new HashMap<String, String>();
-
 
   protected void search(Square start)
   {
@@ -23,12 +20,11 @@ public abstract class Search
   protected void printOutput(Square sq)
   {
     path.add(sq);
-    //System.out.println(sq.toString());
+
     while(sq.getParent() != null)
     {
       sq = sq.getParent();
       path.add(sq);
-      //System.out.println(sq.toString());
     }
 
     System.out.println("\nInitial state:");
@@ -46,10 +42,8 @@ public abstract class Search
       System.out.println(path.get(i).toString().substring(6,9) + "\n");
     }
 
-    System.out.println("Number of explored nodes: " + exploredNodes);
+    System.out.println("Number of explored nodes: " + visited.size());
     System.out.println("Number of moves: " + path.size());
   }
-
-
 
 }
