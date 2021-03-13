@@ -35,11 +35,13 @@ public abstract class Search
 
     System.out.println("First 5 moves: ");
 
-    for(int i = path.size()-2; i>=path.size()-6; i--)
+    int i = path.size()-2;
+    while(i >= path.size()-6 && i>=0)
     {
       System.out.println(path.get(i).toString().substring(0,3));
       System.out.println(path.get(i).toString().substring(3,6));
       System.out.println(path.get(i).toString().substring(6,9) + "\n");
+      i--;
     }
 
     System.out.println("Number of explored nodes: " + visited.size());
