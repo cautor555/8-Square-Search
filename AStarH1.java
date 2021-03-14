@@ -20,7 +20,6 @@ public class AStarH1 extends Search
 
       if(sq.compareSquares(target))
       {
-        System.out.println(sq.toString());
         solved = true;
         break;
       }

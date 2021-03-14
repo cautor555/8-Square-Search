@@ -45,7 +45,7 @@ public abstract class Search
     }
 
     System.out.println("Number of explored nodes: " + visited.size());
-    System.out.println("Number of moves: " + path.size());
+    System.out.println("Number of moves: " + (path.size()-1));
   }
 
 }
