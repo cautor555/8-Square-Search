@@ -1,4 +1,4 @@
-# Project1
+# 8-Square-Search
 
 This project was completed for my college Artificial intelligence course. The objective of the project was to implement Breadth first search and A* search algorithms to find a solution to the 8-square puzzle and compare the effectiveness of each algorithm. 
 
