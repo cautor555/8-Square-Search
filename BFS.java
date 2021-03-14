@@ -1,17 +1,23 @@
+/**
+* Class name: BFS
+* Performs BFS search on an initial state
+*
+* @author  Christian Autor
+* @version 1.0
+* @since   3/14/2021
+*/
+
 import java.util.*;
 
 public class BFS extends Search
 {
-  Square sq;
-
-  Queue<Square> queue =  new LinkedList<>();
+  private Square sq;
+  private Queue<Square> queue =  new LinkedList<>();
 
   public void search(Square start)
   {
     super.search(start);
-
     queue.add(root);
-
 
     while(queue.peek() != null)
     {
@@ -30,7 +36,6 @@ public class BFS extends Search
     printOutput(sq);
 
   }
-
 
   public void exploreChildren(Square sq)
   {

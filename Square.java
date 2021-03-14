@@ -1,16 +1,29 @@
+/**
+* Class name: Square
+* Object to represent an eight square state
+*
+* @author  Christian Autor
+* @version 1.0
+* @since   3/14/2021
+*/
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Square
 {
-  int[] eightSquare;
+  private int[] eightSquare;
+  private Square parent;
+  private Square[] children = new Square[4];
+  private int pathCost;
+  private int heuristic;
 
-  Square parent;
-  Square[] children = new Square[4];
-
-  int pathCost;
-  int heuristic;
-
+  /**
+    * Square constructor
+    *
+    * @param  none
+    * @return none
+    */
   public Square()
   {
     int randomNum1, randomNum2, swap;
@@ -30,6 +43,12 @@ public class Square
     }
   }
 
+/**
+  * Square constructor
+  *
+  * @param  Strint input
+  * @return none
+  */
   public Square(String input)
   {
     eightSquare = new int[9];
@@ -40,6 +59,12 @@ public class Square
       eightSquare[i] = Integer.parseInt(st1.nextToken());
   }
 
+  /**
+    * Square constructor
+    *
+    * @param  int[] squareArray
+    * @return none
+    */
   public Square(int[] squareArray)
   {
     eightSquare = new int[9];
@@ -48,11 +73,23 @@ public class Square
       eightSquare[i] = squareArray[i];
   }
 
+/**
+    * getSquare method
+    *
+    * @param  int position
+    * @return int
+    */
   public int getSquare(int position)
   {
     return eightSquare[position];
   }
 
+/**
+    * getIndex method
+    *
+    * @param  int target
+    * @return int
+    */
   public int getIndex(int target)
   {
     for(int index = 0; index<9; index++)
@@ -63,6 +100,12 @@ public class Square
     return -1;
   }
 
+/**
+    * compareSquares method
+    *
+    * @param  Square square2
+    * @return boolean
+    */
   public boolean compareSquares(Square square2)
   {
     for(int i = 0; i<eightSquare.length; i++)
@@ -73,6 +116,12 @@ public class Square
     return true;
   }
 
+/**
+    * calculateParity method
+    *
+    * @param  none
+    * @return int
+    */
   public int calculateParity()
   {
     int pCount = 0;
@@ -88,6 +137,12 @@ public class Square
     return pCount%2;
   }
 
+/**
+    * shift method
+    *
+    * @param  int position
+    * @return Square
+    */
   public Square shift(int position)
   {
     int[] eightSquareShift = eightSquare.clone();
@@ -99,6 +154,12 @@ public class Square
     return new Square(eightSquareShift);
   }
 
+/**
+    * toString method
+    *
+    * @param  none
+    * @return String
+    */
   public String toString()
   {
     String S = "";
@@ -107,16 +168,34 @@ public class Square
     return S;
   }
 
+/**
+    * setParent method
+    *
+    * @param  Square parent
+    * @return none
+    */
   public void setParent(Square parent)
   {
     this.parent = parent;
   }
 
+/**
+    * getParent method
+    *
+    * @param  none
+    * @return Square
+    */
   public Square getParent()
   {
     return parent;
   }
 
+/**
+    * setChild method
+    *
+    * @param  Square child
+    * @return none
+    */
   public void setChild(Square child)
   {
     for(int i = 0; i<children.length; i++)
@@ -129,11 +208,23 @@ public class Square
     }
   }
 
+/**
+    * getChild method
+    *
+    * @param  int index
+    * @return Square
+    */
   public Square getChild(int index)
   {
     return children[index];
   }
 
+/**
+    * setHeuristic1 method
+    *
+    * @param  Square square2
+    * @return none
+    */
   public void setHeuristic1(Square square2)
   {
     int count = 0;
@@ -145,6 +236,12 @@ public class Square
     heuristic = count;
   }
 
+/**
+    * setHeuristic2 method
+    *
+    * @param  Square square2
+    * @return none
+    */
   public void setHeuristic2(Square square2)
   {
     int count = 0;
@@ -158,16 +255,34 @@ public class Square
     heuristic = count;
   }
 
+/**
+    * getHeuristic method
+    *
+    * @param none
+    * @return int
+    */
   public int getHeuristic()
   {
     return heuristic;
   }
 
+/**
+    * setPathCost method
+    *
+    * @param int cost
+    * @return none
+    */
   public void setPathCost(int cost)
   {
     pathCost = cost;
   }
 
+/**
+    * getPathCost method
+    *
+    * @param none
+    * @return int
+    */
   public int getPathCost()
   {
     return pathCost;
@@ -175,7 +290,14 @@ public class Square
 
 }
 
-
+/**
+* Class name: SquareComparator
+* Overrides Comparator class to be used in a priority queue
+*
+* @author  Christian Autor
+* @version 1.0
+* @since   3/14/2021
+*/
 class SquareComparator implements Comparator<Square> {
 
        @Override

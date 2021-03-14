@@ -1,17 +1,24 @@
+/**
+* Class name: AStarH1
+* Performs A* search on an initial state with heuristic H1
+*
+* @author  Christian Autor
+* @version 1.0
+* @since   3/14/2021
+*/
+
 import java.util.*;
 
 public class AStarH1 extends Search
 {
-  Queue<Square> pQueue =  new PriorityQueue<>(new SquareComparator());
-
-  Square sq;
+  private Queue<Square> pQueue =  new PriorityQueue<>(new SquareComparator());
+  private Square sq;
 
   public void search(Square start)
   {
-    super.search(start);
-
     boolean solved = false;
 
+    super.search(start);
     pQueue.add(start);
 
     while(!solved)

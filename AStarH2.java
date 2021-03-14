@@ -1,19 +1,24 @@
+/**
+* Class name: AStarH2
+* Performs A* search on an initial state with heuristic H2
+*
+* @author  Christian Autor
+* @version 1.0
+* @since   3/14/2021
+*/
+
 import java.util.*;
 
 public class AStarH2 extends Search
 {
-
-  Queue<Square> pQueue =  new PriorityQueue<>(new SquareComparator());
-  Square sq;
-
+  private Queue<Square> pQueue =  new PriorityQueue<>(new SquareComparator());
+  private Square sq;
 
   public void search(Square start)
   {
-
-    super.search(start);
-
     boolean solved = false;
 
+    super.search(start);
     pQueue.add(start);
 
     while(!solved)
@@ -30,7 +35,6 @@ public class AStarH2 extends Search
 
       exploreChildren(sq);
     }
-
     printOutput(sq);
   }
 
@@ -94,5 +98,5 @@ public class AStarH2 extends Search
       }
     }
   }
-  
+
 }
